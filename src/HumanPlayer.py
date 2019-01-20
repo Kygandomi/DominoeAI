@@ -19,6 +19,7 @@ class HumanPlayer:
 	def remove_dominoe_from_hand(chosen_dominoe):
 		for dominoe in hand:
 			if dominoe.is_equal(chosen_domine):
+				pass
 				
 
 	def play(self, table):
