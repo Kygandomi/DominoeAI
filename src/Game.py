@@ -69,24 +69,28 @@ class Game:
 		# Decides who goes first
 		if self.ace_starts: 
 			# Player with ace starts
-		else :
+			pass
+		else:
 			# Partners pick who starts
+			pass
 
 		# While the game has not been won
-		while(not game_ended)
+		while(not game_ended):
 			# Current Player plays
 			game_ended, game_closed = self.current_player.play(self.table)
 
-			if game_ended || game_closed :
+			if game_ended or game_closed:
 				if not game_closed: 
 					# Check if the player ended in a double
 					# Check if the player lasquieneded
 					# Depending on outcome get points to assign and if ace should start next
+					pass
 
 				else:
 					# Find players with lowest hand
 					# If multiple players, defending team wins
 					# Depending on outcome get points to assign and if ace should start next
+					pass
 
 				# Increment Team score 
 

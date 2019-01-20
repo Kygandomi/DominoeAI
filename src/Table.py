@@ -1,5 +1,3 @@
-from anytree import Node
-
 class Table:
 	def __init__(self):
 		self.dominoes_root = None 
@@ -11,9 +9,9 @@ class Table:
 		pass
 
 	def validate_dominoe(self, dominoe):
-		if dominoe.top_number == self.top_end || dominoe.bottom_number == self.top_end:
+		if dominoe.top_number == self.top_end or dominoe.bottom_number == self.top_end:
 			return True, 0
-		elif dominoe.top_number == self.bottom_end || dominoe.bottom_number == self.bottom_end:
+		elif dominoe.top_number == self.bottom_end or dominoe.bottom_number == self.bottom_end:
 			return True, 1
 		else:
 			return False, -1
@@ -35,18 +33,19 @@ class Table:
 			isValid, side = validate_dominoe(dominoe)
 			if isValid:
 				if side == 0:
-
-				elif sode == 1:
-
+					pass
+				elif side == 1:
+					pass
 
 				dominoeAdded = False
 				neighbor = self.dominoes_root
 				while not dominoeAdded:
 					if side == 0:
-						neighbor.
+						neighbor
 						# Find top most dominoe with no neighbor
 					elif side == 1:
 						# bottom most dominoe with no neightbor
+						pass
 			else:
 				return False
 
