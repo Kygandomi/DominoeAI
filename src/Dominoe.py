@@ -3,16 +3,12 @@ class Dominoe:
 		self.top_number = top_number
 		self.bottom_number = bottom_number
 
-		self.top_neighbor = None
-		self.bottom_neighbor = None
+		self.rotated = False
+	
+	def __str__(self):
+		if self.rotated:
+			print "|" + str(self.bottom_number) + "-" + str(self.top_number) + "|"
+		else:
+			print "|" + str(self.top_number) + "-" + str(self.bottom_number) + "|"
 
-	def is_equal(self, dominoe):
-		if self.top_number == dominoe.top_number:
-			if self.bottom_number == dominoe.bottom_number:
-				return True
 
-		elif self.top_number == dominoe.bottom_number:
-			if self.bottom_number == dominoe.top_number:
-				return True
-
-		return False

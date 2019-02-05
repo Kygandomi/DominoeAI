@@ -2,19 +2,21 @@ import random
 from Table import Table
 from Dominoe import Dominoe
 from HumanPlayer import HumanPlayer
+from Team import Team
 
 class Game:
 	def __init__(self):
-		self.table = Table()
+		self.table = None
 		self.ace_starts = True
 		self.current_player = None
 
 	def setup(self):
 		self.players = self.generate_players() # Create Four Game Players and Two Teams
-		self.dominoes = self.generate_dominoes() # Create Dominoe Tiles
 
 	def setup_match(self):
-		self.table.clear() # Reset the Table
+		self.table = Table() # Create a new table
+		self.dominoes = self.generate_dominoes() # Create Dominoe Tiles
+		
 		self.distribute_dominoes_to_players() # Distrubute dominoes to players
 
 		print("Number of Dominoes Generated: ", len(self.dominoes))
@@ -64,7 +66,7 @@ class Game:
 			index = index+7
 
 	def play_match(self):
-		game_ended = False
+		match_ended = False
 
 		# Decides who goes first
 		if self.ace_starts: 
@@ -74,12 +76,12 @@ class Game:
 			# Partners pick who starts
 			pass
 
-		# While the game has not been won
-		while(not game_ended):
+		# While the match has not been won
+		while(not match_ended):
 			# Current Player plays
-			game_ended, game_closed = self.current_player.play(self.table)
+			match_ended, game_closed = self.current_player.play(self.table)
 
-			if game_ended or game_closed:
+			if match_ended or game_closed:
 				if not game_closed: 
 					# Check if the player ended in a double
 					# Check if the player lasquieneded
@@ -114,6 +116,7 @@ class Game:
 		while not team_win:
 			print('Let\'s start the game...')
 			self.setup_match()
+			self.play_match()
 
 			if(self.teamA.stones == 5):
 				team_win = True

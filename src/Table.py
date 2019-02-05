@@ -1,54 +1,39 @@
 class Table:
 	def __init__(self):
-		self.dominoes_root = None 
+		self.dominoes = [] 
 		self.visualized_tree = None
-		self.top_end = None
-		self.bottom_end = None
 
 	def visualize_table(self):
-		pass
+		dominoe_string = ""
+		for dominoe in self.dominoes:
+			dominoe_string += dominoe
 
-	def validate_dominoe(self, dominoe):
-		if dominoe.top_number == self.top_end or dominoe.bottom_number == self.top_end:
-			return True, 0
-		elif dominoe.top_number == self.bottom_end or dominoe.bottom_number == self.bottom_end:
-			return True, 1
-		else:
-			return False, -1
+		print dominoe_string
 
-	def add_dominoe(self, dominoe):
+	def add_dominoe(self, dominoe, to_left):
 		# If the tree is empty
-		if self.dominoes_root is None:
-			self.dominoes_root = dominoe
-			self.top_end = dominoe.top_number
-			self.bottom_end = dominoe.bottom_number
-			return True
+		if len(self.dominoes) == 0:
+			self.dominoes += [dominoe]
+		
+		# If we are adding to the left we prepend the array
+		if to_left:
+			table_left_number = self.dominoes[0].get_left_number()
+			if table_left_number == dominoe.right_number:
+				self.dominoes = [dominoe] + self.dominoes
+				return True
+			elif table_left_number == dominoe.left_number:
+				dominoe.rotated = True
+				self.dominoes = [dominoe] + self.dominoes
+				return True
 
-		# If the top most dominoe is empty
-		# if self.dominoes_top_most is None:
-
-
-		# Check which side of the tree domnoe needs to go on
 		else:
-			isValid, side = validate_dominoe(dominoe)
-			if isValid:
-				if side == 0:
-					pass
-				elif side == 1:
-					pass
+			index_of_last_dominoe = len(self.dominoes) - 1
+			if dominoe.can_connect_and_rotate(self.dominoes[index_of_last_dominoe]):
+				self.dominoes = self.dominoes + [dominoe]
 
-				dominoeAdded = False
-				neighbor = self.dominoes_root
-				while not dominoeAdded:
-					if side == 0:
-						neighbor
-						# Find top most dominoe with no neighbor
-					elif side == 1:
-						# bottom most dominoe with no neightbor
-						pass
-			else:
-				return False
-
+		# If we got to here the mating failed
+		print("Failed to mate dominoes")
+		return False
 
 	def is_game_closed(self):
 		pass
